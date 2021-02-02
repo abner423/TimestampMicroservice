@@ -23,6 +23,17 @@ app.get("/", function (req, res) {
 app.get("/api/hello", function (req, res) {
   res.json({greeting: 'hello API'});
 });
+app.get("/api/timestamp/:date", function (req, res) {
+  var checkDate = Date.parse(req.params.date);
+    
+  if (isNaN(checkDate) == false) {
+    let data = new Date(req.params.date);
+    let unixValue = Math.floor(new Date().getTime()/1000)
+    res.json({unix: unixValue,utc: data.toUTCString()});
+  }else{
+    res.json({error: "Invalid Date"})
+  }
+});
 
 
 
