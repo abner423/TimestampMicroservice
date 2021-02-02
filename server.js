@@ -31,8 +31,7 @@ app.get("/api/timestamp/:date", function (req, res) {
     
   if (isNaN(checkDate) == false) {
     let data = new Date(req.params.date);
-    let unixValue = Math.floor(new Date().getTime()/1000)
-    res.json({unix: unixValue,utc: data.toUTCString()});
+    res.json({unix: data.valueOf(),utc: data.toUTCString()});
   }else{
     res.json({error: "Invalid Date"})
   }
@@ -41,8 +40,7 @@ app.get("/api/timestamp/:date", function (req, res) {
 app.get("/api/timestamp/", function (req, res) {
 
   let dateToday = new Date();
-  let unixValue = Math.floor(new Date().getTime()/1000)
-  res.json({unix: unixValue,utc: dateToday.toUTCString()});
+  res.json({unix: dateToday.valueOf(),utc: dateToday.toUTCString()});
 });
 
 
