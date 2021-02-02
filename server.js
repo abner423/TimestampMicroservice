@@ -35,7 +35,12 @@ app.get("/api/timestamp/:date", function (req, res) {
   }
 });
 
+app.get("/api/timestamp/", function (req, res) {
 
+  let dateToday = new Date();
+  let unixValue = Math.floor(new Date().getTime()/1000)
+  res.json({unix: unixValue,utc: dateToday.toUTCString()});
+});
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
